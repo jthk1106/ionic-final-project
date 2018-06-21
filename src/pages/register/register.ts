@@ -15,6 +15,13 @@ import { HomePage } from '../home/home';
 })
 export class RegisterPage {
 
+  registerUser: any = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -22,6 +29,10 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  register() {
+    console.log('register function')
+  }
+  
   goHome() {
     this.navCtrl.setRoot(HomePage);
   }

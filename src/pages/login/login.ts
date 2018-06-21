@@ -15,11 +15,20 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
+  loginUser: any = {
+    email: '',
+    password: ''
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  login() {
+    console.log('login function')
   }
 
   goHome() {

@@ -17,22 +17,20 @@
   <ion-list>
     <ion-item>
       <ion-label color="primary" stacked>USERNAME</ion-label>
-      <ion-input type="email" placeholder="Username"></ion-input>
+      <ion-input type="email" [(ngModel)]="loginUser.email" name="email" placeholder="Email"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label color="primary" stacked>PASSWORD</ion-label>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input type="password" [(ngModel)]="loginUser.password" name="password" placeholder="Password"></ion-input>
     </ion-item>
   </ion-list>
 
-  <div class="checkbox">
-    <input type="checkbox" id="rememberme">
-    <label for="rememberme">
-      Remember me
-    </label>
-  </div>
   <ion-buttons>
-    <button ion-button (click)="goHome()">Go Home</button>
+    <button ion-button (click)="login()">Login</button>
+  </ion-buttons>
+  
+  <ion-buttons>
+    <button ion-button (click)="goHome()">Just Search</button>
   </ion-buttons>
 </ion-content>

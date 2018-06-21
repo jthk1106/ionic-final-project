@@ -18,22 +18,30 @@
     <ion-label>INPUT FIELDS</ion-label>
     <ion-item>
       <ion-label color="primary">FIRST NAME</ion-label>
-      <ion-input placeholder="First Name"></ion-input>
+      <ion-input placeholder="First Name" [(ngModel)]='registerUser.firstName' type="text" name="first name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">LAST NAME</ion-label>
-      <ion-input placeholder="Last Name"></ion-input>
+      <ion-input placeholder="Last Name"  [(ngModel)]='registerUser.lastName' type="text" name="last name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">EMAIL</ion-label>
-      <ion-input placeholder="Email"></ion-input>
+      <ion-input placeholder="Email" [(ngModel)]='registerUser.email' type="text" name="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">PASSWORD</ion-label>
-      <ion-input placeholder="Password"></ion-input>
+      <ion-input placeholder="Password" [(ngModel)]='registerUser.password' type="password" name="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-textarea placeholder="Whatever"></ion-textarea>
     </ion-item>
   </ion-list>
+
+  <ion-buttons>
+    <button ion-button (click)="register()">Register</button>
+  </ion-buttons>
+
+  <ion-buttons>
+    <button ion-button (click)="goHome()">Just Search</button>
+  </ion-buttons>
 </ion-content>

@@ -7,8 +7,13 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  location: any = ''
+
   constructor(public navCtrl: NavController) {
 
   }
 
+  search(){
+    console.log('search function', this.location)
+  }
 }
