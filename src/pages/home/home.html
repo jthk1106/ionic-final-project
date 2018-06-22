@@ -11,8 +11,11 @@
   <h3>FIND A PLACE</h3>
   <ion-item>
     <ion-label color="primary">SEARCH</ion-label>
-    <ion-input placeholder="Type location here..." [(ngModel)]="location" (keyup.enter)="search()"></ion-input>
+    <ion-input placeholder="Type location here..." [(ngModel)]="location" (keyup.enter)="search()">
+      <ion-icon item-content name="search"></ion-icon>
+    </ion-input>
+    <ion-icon name="search"></ion-icon>
+    
   </ion-item>
-
   <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>

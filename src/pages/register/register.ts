@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { UserRegisterProvider } from '.../providers/user-register'
 
 /**
  * Generated class for the RegisterPage page.
@@ -32,7 +33,7 @@ export class RegisterPage {
   register() {
     console.log('register function')
   }
-  
+
   goHome() {
     this.navCtrl.setRoot(HomePage);
   }

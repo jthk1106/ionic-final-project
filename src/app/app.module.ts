@@ -10,6 +10,8 @@ import { RegisterPage } from '../pages/register/register';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { UserRegisterProvider } from '../providers/user-register/user-register';
+import { UserLoginProvider } from '../providers/user-login/user-login';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserRegisterProvider,
+    UserLoginProvider,
+    UserRegisterProvider,
+    UserLoginProvider
   ]
 })
 export class AppModule {}
