@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
 
   initMap() {
     
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    let latLng = new google.maps.LatLng(32.715736, -117.161087);
 
     let mapOptions = {
       center: latLng,
@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-  this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     /*
     let pyrmont = {lat: -33.867, lng: 151.195};
 
