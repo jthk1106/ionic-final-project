@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -12,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserRegisterProvider } from '../providers/user-register/user-register';
 import { UserLoginProvider } from '../providers/user-login/user-login';
+import { MapProvider } from '../providers/map/map';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { UserLoginProvider } from '../providers/user-login/user-login';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,8 +43,8 @@ import { UserLoginProvider } from '../providers/user-login/user-login';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserRegisterProvider,
     UserLoginProvider,
-    UserRegisterProvider,
-    UserLoginProvider
+    MapProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

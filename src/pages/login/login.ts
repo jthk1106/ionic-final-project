@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { UserLoginProvider } from '../../providers/user-login/user-login';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -12,6 +14,7 @@ import { HomePage } from '../home/home';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [UserLoginProvider]
 })
 export class LoginPage {
 
@@ -20,7 +23,7 @@ export class LoginPage {
     password: ''
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loginProvider: UserLoginProvider) {
   }
 
   ionViewDidLoad() {
@@ -28,7 +31,13 @@ export class LoginPage {
   }
 
   login() {
-    console.log('login function')
+    console.log('login page run', this.loginUser)
+    this.loginProvider.login(this.loginUser)
+      .subscribe( (data:any) => {
+        console.log("login response", data);
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('userId', data.userId);
+      })
   }
 
   goHome() {
