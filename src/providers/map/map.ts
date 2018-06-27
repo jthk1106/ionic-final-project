@@ -28,6 +28,7 @@ export class MapProvider {
       // data can be a set of coordinates, or an error (if an error occurred).
       // data.coords.latitude
       // data.coords.longitude
+      console.log(data.coords.latitude)
     });
   }
 }

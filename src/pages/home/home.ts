@@ -1,130 +1,69 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MapProvider } from '../../providers/map/map';
-
+import { Geolocation } from '@ionic-native/geolocation';
+ 
 declare var google;
-
+ 
 @Component({
-  selector: 'page-home',
+  selector: 'home-page',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit {
-  @ViewChild('map') mapElement;
-  location: any = '';
+export class HomePage {
+ 
+  @ViewChild('map') mapElement: ElementRef;
   map: any;
-  infowindow: any;
-
-  constructor(public navCtrl: NavController, private geolocation: MapProvider) {
-
+ 
+  constructor(public navCtrl: NavController, private geolocation: Geolocation) {
+ 
   }
-
+ 
   ionViewDidLoad(){
-  
-    setTimeout(()=>{ this.initMap(); },100);
+    this.loadMap();
   }
-
-  initMap() {
-    
-    let latLng = new google.maps.LatLng(32.715736, -117.161087);
-
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    /*
-    let pyrmont = {lat: -33.867, lng: 151.195};
-
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center: pyrmont,
-      zoom: 15
-    });
-
-    this.infowindow = new google.maps.InfoWindow();
-    let service = new google.maps.places.PlacesService(this.map);
-    service.nearbySearch({
-      location: pyrmont,
-      radius: 500,
-      type: 'store'
-    }, this.callback);
-  }
-
-  callback(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        this.createMarker(results[i]);
+ 
+  loadMap(){
+ 
+    this.geolocation.getCurrentPosition().then((position) => {
+ 
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       }
-    }
+ 
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
+    }, (err) => {
+      console.log(err);
+    });
+ 
   }
-
-  createMarker(place) {
-    let placeLoc = place.geometry.location;
+  
+  addMarker(){
+  
     let marker = new google.maps.Marker({
       map: this.map,
-      position: place.geometry.location
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
     });
 
-    google.maps.event.addListener(marker, 'click', function() {
-      this.infowindow.setContent(place.name);
-      this.infowindow.open(this.map, this);
-    });
-    */
+    let content = "<h4>Information!</h4>";         
+
+    this.addInfoWindow(marker, content);
+
   }
 
-  ngOnInit() {
-    function locate(){
-      console.log('locate() from home', this.locate)
-      return this.geolocation.find()
-    }
+  addInfoWindow(marker, content){
+ 
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+   
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });
+   
   }
 }
-
-
-/*
-var map;
-  var infowindow;
-
-  function initMap() {
-    var pyrmont = {lat: -33.867, lng: 151.195};
-
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: pyrmont,
-      zoom: 15
-    });
-
-    infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch({
-      location: pyrmont,
-      radius: 500,
-      type: ['store']
-    }, callback);
-  }
-
-  function callback(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
-    }
-  }
-
-  function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-      map: map,
-      position: place.geometry.location
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
-    });
-  }
-
-  search(){
-    console.log('search function', this.location)
-  }
-*/
