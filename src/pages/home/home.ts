@@ -49,7 +49,7 @@ export class HomePage {
       position: this.map.getCenter()
     });
 
-    let content = "<h4>Information!</h4>";         
+    let content = "<h4>You Are Here!</h4>";         
 
     this.addInfoWindow(marker, content);
 
