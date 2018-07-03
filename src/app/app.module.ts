@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserRegisterProvider } from '../providers/user-register/user-register';
 import { UserLoginProvider } from '../providers/user-login/user-login';
 import { MapProvider } from '../providers/map/map';
+import { UserDataProvider } from '../providers/user-data/user-data';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MapProvider } from '../providers/map/map';
     UserRegisterProvider,
     UserLoginProvider,
     MapProvider,
-    Geolocation
+    Geolocation,
+    UserDataProvider
   ]
 })
 export class AppModule {}

@@ -31,13 +31,14 @@ export class LoginPage {
   }
 
   login() {
-    console.log('login page run', this.loginUser)
+    console.log('login page runs', this.loginUser)
     this.loginProvider.login(this.loginUser)
       .subscribe( (data:any) => {
         console.log("login response", data);
         sessionStorage.setItem('token', data.token);
         sessionStorage.setItem('userId', data.userId);
       })
+      this.navCtrl.setRoot(HomePage)
   }
 
   goHome() {
