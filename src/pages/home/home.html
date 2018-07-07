@@ -3,9 +3,11 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-      
-    <ion-icon class="walk-icon" name="walk"></ion-icon>
-    
+
+    <div *ngIf="userData">
+    <ion-icon class="walk-icon" name="walk"> Welcome {{this.first}} {{this.last}}!</ion-icon>
+    </div>
+
     <!--
     <ion-title>
       Use Your Imagination Map
@@ -20,13 +22,26 @@
 </ion-header>
  
 <ion-content>
-    <p class="centertitle">THE BREADCRUMBS APP</p>
-    <p>Welcome {{this.first}} {{this.last}}!</p>
+
+    <div class="centertitle">
+      <div>
+      <span class="hilite">THE</span>
+      </div>
+      <div>
+      <span class="hilite">BREADCRUMBS</span>
+      </div>
+      <div>
+      <span class="hilite">APP</span>
+      </div>
+    </div>
+    
     <ion-buttons center class="centerbutton">
         <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Drop A Crumb</button>
         <!--(click)="addMarker()" add back into button-->
         <button ion-button (click)="getUserData()">User Data</button>
+        <button ion-button (click)="places()">Places</button>
     </ion-buttons>
+
   <div #map id="map"></div> 
   <!--FOR PLACES MAP
   <script async defer

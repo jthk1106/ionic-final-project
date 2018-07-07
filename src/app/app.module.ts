@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from "@ionic-native/google-maps";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -16,6 +17,7 @@ import { UserRegisterProvider } from '../providers/user-register/user-register';
 import { UserLoginProvider } from '../providers/user-login/user-login';
 import { MapProvider } from '../providers/map/map';
 import { UserDataProvider } from '../providers/user-data/user-data';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { UserDataProvider } from '../providers/user-data/user-data';
     UserLoginProvider,
     MapProvider,
     Geolocation,
-    UserDataProvider
+    UserDataProvider,
+    GoogleMaps
   ]
 })
 export class AppModule {}
