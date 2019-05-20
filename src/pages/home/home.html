@@ -4,9 +4,13 @@
         <ion-icon name="menu"></ion-icon>
     </button>
 
-    <div *ngIf="userData">
-    <ion-icon class="walk-icon" name="walk"> Welcome {{this.first}} {{this.last}}!</ion-icon>
+    <div *ngIf="userData; else loggedOut">
+     Hi {{this.first}} {{this.last}}! <ion-icon class="walk-icon" name="md-hand"></ion-icon>
     </div>
+
+    <ng-template #loggedOut>
+      Log yourself in!
+    </ng-template>
 
     <!--
     <ion-title>
@@ -24,22 +28,16 @@
 <ion-content>
 
     <div class="centertitle">
-      <div>
-      <span class="hilite">THE</span>
-      </div>
-      <div>
+      <span class="hilite">THE BETTER</span>
       <span class="hilite">BREADCRUMBS</span>
-      </div>
-      <div>
       <span class="hilite">APP</span>
-      </div>
     </div>
     
     <ion-buttons center class="centerbutton">
-        <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Drop A Crumb</button>
+        <button ion-button color="dark" (click)="addMarker()">Drop A Crumb</button>
         <!--(click)="addMarker()" add back into button-->
-        <button ion-button (click)="getUserData()">User Data</button>
-        <button ion-button (click)="places()">Places</button>
+        <button ion-button color="dark" (click)="initMap()">Nearby Places</button>
+
     </ion-buttons>
 
   <div #map id="map"></div> 

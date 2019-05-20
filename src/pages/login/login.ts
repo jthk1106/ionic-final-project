@@ -37,8 +37,8 @@ export class LoginPage {
         console.log("login response", data);
         sessionStorage.setItem('token', data.token);
         sessionStorage.setItem('userId', data.userId);
+        this.navCtrl.setRoot(HomePage);
       })
-      this.navCtrl.setRoot(HomePage)
   }
 
   goHome() {

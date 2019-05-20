@@ -9,12 +9,13 @@
      
       #map {
           width: 100%;
-          height: 50%;
+          height: 60%;
       }
 
       .centerbutton {
         display: flex;
         justify-content: center;
+        
       }
 
       .centertitle {
@@ -22,7 +23,8 @@
         flex-direction: column;
         justify-content: center;
         font-family: 'Gochi Hand', cursive;
-        font-size: 25px;
+        font-size: 35px;
+        color: black;
         text-align: center;
       }
 

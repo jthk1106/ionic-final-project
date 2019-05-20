@@ -4,13 +4,14 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { UserDataProvider } from '../../providers/user-data/user-data';
  
 declare var google;
+//let google
  
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html'
 })
 export class HomePage {
- 
+  
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   now: any;
@@ -23,7 +24,7 @@ export class HomePage {
 
  
   constructor(public navCtrl: NavController, private geolocation: Geolocation, private getUser: UserDataProvider) {
-
+    
   }
 
   getUserData(){
@@ -41,11 +42,14 @@ export class HomePage {
   // WORKING TUTORIAL
   ionViewDidLoad(){
     this.loadMap();
+    //this.initMap();
+  }
+
+  ionViewWillEnter(){
     this.id = sessionStorage.getItem('userId')
     if(this.id){
       return this.getUserData()
     }
-    //this.initMap();
   }
 
 /*FOR PLACES MAP
@@ -68,9 +72,10 @@ export class HomePage {
   loadMap(){
     console.log('loadMap() runs')
     this.geolocation.getCurrentPosition().then((position) => {
- 
+      console.log(position)
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       this.now = latLng;
+      console.log(this.now)
  
       let mapOptions = {
         center: latLng,
@@ -80,13 +85,33 @@ export class HomePage {
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+      this.infowindow = new google.maps.InfoWindow();
+      let service = new google.maps.places.PlacesService(this.map);
+      service.nearbySearch({
+        location: latLng,
+        radius: 500,
+        type: ['store']
+      }, //this.callback)
+      (results, status) => {
+        console.log(this.createMarker)
+        console.log("callback() runs", results, status)
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          console.log("inside of if() from callback()")
+          for (let i = 0; i < results.length; i++) {
+            console.log("inside of for() from if() then callback()")
+            this.createMarker(results[i]);
+          }
+        }
+      })
+
     }, (err) => {
       console.log(err);
     });
  
   }
 
-  places() {
+  initMap() {
+    console.log(this.createMarker)
     let pyrmont = {lat: -33.867, lng: 151.195};
 
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -100,20 +125,40 @@ export class HomePage {
       location: pyrmont,
       radius: 500,
       type: ['store']
-    }, this.callback);
+    }, //this.callback)
+    (results, status) => {
+      console.log(this.createMarker)
+      console.log("callback() runs", results, status)
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log("inside of if() from callback()")
+        for (let i = 0; i < results.length; i++) {
+          console.log("inside of for() from if() then callback()")
+          this.createMarker(results[i]);
+        }
+      }
+    })
   }
 
+  
+
+/*
   callback(results, status) {
+    console.log(this.createMarker)
+    console.log("callback() runs", results, status)
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      console.log("inside of if() from callback()")
       for (let i = 0; i < results.length; i++) {
+        console.log("inside of for() from if() then callback()")
         this.createMarker(results[i]);
       }
     }
   }
+*/
 
   createMarker(place) {
-    let placeLoc = place.geometry.location;
-    let marker = new google.maps.Marker({
+    console.log("createMarker() runs", place)
+    //let placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
       map: this.map,
       position: place.geometry.location
     });
@@ -123,8 +168,8 @@ export class HomePage {
       this.infowindow.open(this.map, this);
     });
   }
-  
-  /*ADD MARKER FUNCTIONS 
+
+  //ADD MARKER FUNCTIONS 
   addMarker(){
   
     let marker = new google.maps.Marker({
@@ -150,5 +195,5 @@ export class HomePage {
     });
 
   }
-  */
+  
 }
