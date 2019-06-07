@@ -2,16 +2,16 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserDataProvider } from '../../providers/user-data/user-data';
- 
+
 declare var google;
 //let google
- 
+
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  
+
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   now: any;
@@ -22,9 +22,9 @@ export class HomePage {
   last: any = '';
   infowindow: any;
 
- 
+
   constructor(public navCtrl: NavController, private geolocation: Geolocation, private getUser: UserDataProvider) {
-    
+
   }
 
   getUserData(){
@@ -38,7 +38,7 @@ export class HomePage {
         this.last = this.userData.lastName
       })
   }
- 
+
   // WORKING TUTORIAL
   ionViewDidLoad(){
     this.loadMap();
@@ -68,7 +68,7 @@ export class HomePage {
   }
 */
 
-  // WORKING TUTORIAL 
+  // WORKING TUTORIAL
   loadMap(){
     console.log('loadMap() runs')
     this.geolocation.getCurrentPosition().then((position) => {
@@ -76,15 +76,15 @@ export class HomePage {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       this.now = latLng;
       console.log(this.now)
- 
+
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
- 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      /*
       this.infowindow = new google.maps.InfoWindow();
       let service = new google.maps.places.PlacesService(this.map);
       service.nearbySearch({
@@ -103,11 +103,11 @@ export class HomePage {
           }
         }
       })
-
+      */
     }, (err) => {
       console.log(err);
     });
- 
+
   }
 
   initMap() {
@@ -139,7 +139,7 @@ export class HomePage {
     })
   }
 
-  
+
 
 /*
   callback(results, status) {
@@ -169,31 +169,31 @@ export class HomePage {
     });
   }
 
-  //ADD MARKER FUNCTIONS 
+  //ADD MARKER FUNCTIONS
   addMarker(){
-  
+
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: this.now //this.map.getCenter()
     });
 
-    let content = "<h4>You Are Here!</h4>";         
+    let content = "<h4>You Are Here!</h4>";
 
     this.addInfoWindow(marker, content);
-    
+
   }
 
   addInfoWindow(marker, content){
- 
+
     let infoWindow = new google.maps.InfoWindow({
       content: content
     });
-   
+
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(this.map, marker);
     });
 
   }
-  
+
 }

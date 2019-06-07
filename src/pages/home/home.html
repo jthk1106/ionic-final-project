@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,14 +9,14 @@
     </div>
 
     <ng-template #loggedOut>
-      Log yourself in!
+      crumbs...
     </ng-template>
 
     <!--
     <ion-title>
       Use Your Imagination Map
     </ion-title>
-    --> 
+    -->
 
     <!--FOR PLACES MAP
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -24,15 +24,15 @@
     -->
   </ion-navbar>
 </ion-header>
- 
+
 <ion-content>
 
-    <div class="centertitle">
-      <span class="hilite">THE BETTER</span>
-      <span class="hilite">BREADCRUMBS</span>
-      <span class="hilite">APP</span>
+    <div class="centertitle center">
+      <span class="hilite">The</span>
+      <span class="hilite">Breadcrumbs</span>
+      <span class="hilite">App</span>
     </div>
-    
+
     <ion-buttons center class="centerbutton">
         <button ion-button color="dark" (click)="addMarker()">Drop A Crumb</button>
         <!--(click)="addMarker()" add back into button-->
@@ -40,7 +40,7 @@
 
     </ion-buttons>
 
-  <div #map id="map"></div> 
+    <div #map id="map" class="center"></div>
   <!--FOR PLACES MAP
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0CBEskm-Uv0j1WvVsNGa7o5DhkVFAmek&libraries=places&callback=initMap">
@@ -67,7 +67,7 @@
       <ion-icon item-content name="search"></ion-icon>
     </ion-input>
     <ion-icon name="search"></ion-icon>
-    
+
   </ion-item>
   <button ion-button secondary menuToggle>Toggle Menu</button>
 
