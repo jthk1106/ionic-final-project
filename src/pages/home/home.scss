@@ -55,9 +55,20 @@
       }
 
       .button {
-        background-color: #3dbeff;
+        background-color: #b5ae99;
+        height: 4em;
+        font-family: 'Gochi Hand', cursive;
+        font-size: 20px;
+        text-transform: none;
       }
 
+      .back {
+        //--background: url(../../assets/imgs/1.png) 0 0/100% 100% no-repeat;
+        background-image: url(../../assets/imgs/1.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
     }
 
 }
