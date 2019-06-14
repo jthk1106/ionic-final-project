@@ -105,7 +105,7 @@ export class HomePage {
       })
       */
     }, (err) => {
-      console.log("loadMap error: ", err);
+      console.log("loadMap error: ", err.message);
     });
 
   }
