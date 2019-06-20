@@ -57,13 +57,16 @@
       .button {
         background-color: rgba(130, 255, 202, 0.5);
         color: white;
-        height: 2.5em;
-        width: 5em;
-        font-family: 'Gochi Hand', cursive;
-        font-size: 20px;
+        height: 3.5em;
+        width: 8em;
+        font-family: Metropolis, sans-serif;
+        //font-family: 'Gochi Hand', cursive;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
         text-transform: none;
         border: 1px solid black;
-        border-radius: 8px;
+        border-radius: 4px;
       }
 
       .back {
