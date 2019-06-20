@@ -33,14 +33,15 @@
       <span class="hilite">App</span>
     </div>
 
-    <ion-buttons center class="centerbutton">
-        <button ion-button color="dark" (click)="addMarker()">DROP<br>A CRUMB</button>
-        <button ion-button color="dark" (click)="loadMap()">LOCATE</button>
-        <button ion-button color="dark" (click)="initMap()">NEARBY<br>PLACES</button>
 
-    </ion-buttons>
 
     <div #map id="map" class="center"></div>
+
+    <ion-buttons center class="centerbutton">
+      <button ion-button color="dark" (click)="addMarker()">Drop A<br>Crumb</button>
+      <button ion-button color="dark" (click)="loadMap()">Locate</button>
+      <button ion-button color="dark" (click)="initMap()">Nearby<br>Places</button>
+    </ion-buttons>
   <!--FOR PLACES MAP
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0CBEskm-Uv0j1WvVsNGa7o5DhkVFAmek&libraries=places&callback=initMap">
